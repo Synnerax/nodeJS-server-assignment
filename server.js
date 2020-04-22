@@ -7,8 +7,11 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 const initialitingDB = require('./Initiating');
-const checkCart = require('./Handler/checkcart')
 
+
+/**
+ * INSTRUKTIONER I README 
+ */
 // visa alla föremål
 app.get("/api/products", async (request, response) => {
     const products = await database.get('Products').value();
@@ -29,7 +32,7 @@ app.get("/api/products", async (request, response) => {
 app.post("/api/products/:add", async (request, response) => {
     const productId = await request.params.add;
     console.log(productId);
-    const checkExistingItems = await checkCart.checkCartItem(productId);
+    const checkExistingItems = await checkCartItem(productId);
     const product = await database.get('Products').find({id: productId}).value();
     let msg = {
         // Default meddelande
@@ -61,7 +64,7 @@ app.post("/api/products/:add", async (request, response) => {
 // Jag vill kunna ta bort produkter från min varukorg (KLAR)
 app.delete("/api/products/:remove", async (request, response) => {
     const productId = await request.params.remove;
-    const checkExistingItems = await checkCart.checkCartItem(productId);
+    const checkExistingItems = await checkCartItem(productId);
     let msg = {
         // Default meddelande
         Succes: false,
@@ -98,7 +101,17 @@ app.get("/api/products/cart", async (request, response) => {
     response.send(cart);
 })
 
+const checkCartItem = (productId) => {
+    let checkExistingItems = false;
+    const product =  database.get("Shopingcart").find({id: productId}).value();
 
+    if (product != null) {
+        checkExistingItems = true;
+        return checkExistingItems
+    }
+
+    return checkExistingItems
+}
 
 
 app.listen(port, () => {
