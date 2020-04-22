@@ -13,31 +13,31 @@ const checkForDatabase = () => {
                 {
                     "Name": "Rino Plastic",
                     "Price": "100",
-                    "id": "01",
+                    "id": "1",
                     "image": "https://placeimg.com/640/480/any"
                 },
                 {
                     "Name": "Liquid Dinosaur",
                     "Price": "100",
-                    "id": "02",
+                    "id": "2",
                     "image": "https://placeimg.com/640/480/any"
                 },
                 {
                     "Name": "Action Figure Kakadua",
                     "Price": "100",
-                    "id": "03",
+                    "id": "3",
                     "image": "https://placeimg.com/640/480/any"
                 },
                 {
                     "Name": "Giant Jurassic Stone",
                     "Price": "100",
-                    "id": "04",
+                    "id": "4",
                     "image": "https://placeimg.com/640/480/any"
                 },
                 {
                     "Name": "Charcaol",
                     "Price": "100",
-                    "id": "05",
+                    "id": "5",
                     "image": "https://placeimg.com/640/480/any"
                 }
         ] }).write();

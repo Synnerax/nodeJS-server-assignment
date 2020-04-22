@@ -18,3 +18,5 @@ const checkCartItem = (productId) => {
 
 
 exports.checkCartItem = checkCartItem;
+
+// nu ger jag upp med moduler (Y)

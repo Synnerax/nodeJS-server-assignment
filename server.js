@@ -71,7 +71,7 @@ app.delete("/api/products/:remove", async (request, response) => {
 
    
     if (checkExistingItems == true) {
-        msg.Succes= true ;
+        msg.Succes = true ;
         msg.Status = 200;
         msg.Message = "Product removed from your cart!";
         await database.get('Shopingcart').remove({id: productId}).write();
@@ -106,3 +106,4 @@ app.listen(port, () => {
     initialitingDB.checkForDatabase;
     initialitingDB.checkForCart;
 });
+
