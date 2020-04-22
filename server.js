@@ -6,58 +6,8 @@ const database = low(adapter)
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(express.static("public"));
-
-
-
-const checkForDatabase = () => {
-    const databaseInitiated = database.has("Products").value();
-
-    if (!databaseInitiated) {
-        database.defaults({ Products: [
-                {
-                    "Name": "Rino Plastic",
-                    "Price": "100",
-                    "id": "01",
-                    "image": "https://placeimg.com/640/480/any"
-                },
-                {
-                    "Name": "Liquid Dinosaur",
-                    "Price": "100",
-                    "id": "02",
-                    "image": "https://placeimg.com/640/480/any"
-                },
-                {
-                    "Name": "Action Figure Kakadua",
-                    "Price": "100",
-                    "id": "03",
-                    "image": "https://placeimg.com/640/480/any"
-                },
-                {
-                    "Name": "Giant Jurassic Stone",
-                    "Price": "100",
-                    "id": "04",
-                    "image": "https://placeimg.com/640/480/any"
-                },
-                {
-                    "Name": "Charcaol",
-                    "Price": "100",
-                    "id": "05",
-                    "image": "https://placeimg.com/640/480/any"
-                }
-        ] }).write();
-    }
-}
-
-const checkForCart = () => {
-    const shopingcartInitiated = database.has("Shopingcart").value();
-
-    if (!shopingcartInitiated) {
-        database.defaults({ Shopingcart: [] }).write();
-    }
-}
-
-
+const initialitingDB = require('./Initiating');
+const checkCart = require('./Handler/checkcart')
 
 // visa alla föremål
 app.get("/api/products", async (request, response) => {
@@ -79,7 +29,7 @@ app.get("/api/products", async (request, response) => {
 app.post("/api/products/:add", async (request, response) => {
     const productId = await request.params.add;
     console.log(productId);
-    const checkExistingItems = await checkCartItem(productId);
+    const checkExistingItems = await checkCart.checkCartItem(productId);
     const product = await database.get('Products').find({id: productId}).value();
     let msg = {
         // Default meddelande
@@ -91,7 +41,6 @@ app.post("/api/products/:add", async (request, response) => {
     if (checkExistingItems == true) {
         msg.Message = "product already added to cart!"
         response.send(msg);
-        console.log(msg);
 
         
     } else if (product != null) {
@@ -101,7 +50,6 @@ app.post("/api/products/:add", async (request, response) => {
         await database.get("Shopingcart").push(product).write();
 
         response.send(msg);
-        console.log(msg);
 
        
     } else 
@@ -113,7 +61,7 @@ app.post("/api/products/:add", async (request, response) => {
 // Jag vill kunna ta bort produkter från min varukorg (KLAR)
 app.delete("/api/products/:remove", async (request, response) => {
     const productId = await request.params.remove;
-    const checkExistingItems = await checkCartItem(productId);
+    const checkExistingItems = await checkCart.checkCartItem(productId);
     let msg = {
         // Default meddelande
         Succes: false,
@@ -150,23 +98,11 @@ app.get("/api/products/cart", async (request, response) => {
     response.send(cart);
 })
 
-// Jag vill bli påmind om produkten redan finns i min varukorg (KLAR)
-const checkCartItem = async (productId) => {
-    let checkExistingItems = false;
-    const product = await database.get("Shopingcart").find({id: productId}).value();
-
-    if (product != null) {
-        checkExistingItems = true;
-        return checkExistingItems
-    }
-
-    return checkExistingItems
-}
 
 
 
 app.listen(port, () => {
     console.log("Listening on Port:", port);
-    checkForDatabase();
-    checkForCart();
+    initialitingDB.checkForDatabase;
+    initialitingDB.checkForCart;
 });

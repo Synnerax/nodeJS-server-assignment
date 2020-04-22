@@ -31,30 +31,5 @@
       "image": "https://placeimg.com/640/480/any"
     }
   ],
-  "Shopingcart": [
-    {
-      "Name": "Liquid Dinosaur",
-      "Price": "100",
-      "id": "02",
-      "image": "https://placeimg.com/640/480/any"
-    },
-    {
-      "Name": "Action Figure Kakadua",
-      "Price": "100",
-      "id": "03",
-      "image": "https://placeimg.com/640/480/any"
-    },
-    {
-      "Name": "Giant Jurassic Stone",
-      "Price": "100",
-      "id": "04",
-      "image": "https://placeimg.com/640/480/any"
-    },
-    {
-      "Name": "Charcaol",
-      "Price": "100",
-      "id": "05",
-      "image": "https://placeimg.com/640/480/any"
-    }
-  ]
+  "Shopingcart": []
 }
