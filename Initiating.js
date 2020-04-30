@@ -18,25 +18,25 @@ const checkForDatabase = () => {
                 },
                 {
                     "Name": "Liquid Dinosaur",
-                    "Price": "100",
+                    "Price": "200",
                     "id": "2",
                     "image": "https://placeimg.com/640/480/any"
                 },
                 {
                     "Name": "Action Figure Kakadua",
-                    "Price": "100",
+                    "Price": "300",
                     "id": "3",
                     "image": "https://placeimg.com/640/480/any"
                 },
                 {
                     "Name": "Giant Jurassic Stone",
-                    "Price": "100",
+                    "Price": "400",
                     "id": "4",
                     "image": "https://placeimg.com/640/480/any"
                 },
                 {
                     "Name": "Charcaol",
-                    "Price": "100",
+                    "Price": "500",
                     "id": "5",
                     "image": "https://placeimg.com/640/480/any"
                 }
